@@ -1,0 +1,112 @@
+spring:
+  profiles:
+    active: dev #激活开发环境配置
+
+---
+
+server:
+  port: 8001
+
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
+  type-aliases-package: com.atgulipeng.microservice.entities  # 所有Entity别名类所在包
+  mapper-locations: classpath:mybatis/mapper/**/*.xml       # mapper映射文件
+
+spring:
+  profiles: dev # 开发环境
+  data:
+    mongodb:           # 整合 MongoDB
+      uri: mongodb://dbdev2:Inalex008@42.62.114.15:28010/commpl1?authSource=admin&authMechanism=SCRAM-SHA-1        # MongoDB连接
+#      database: commpl1                                                                                     # 库名
+  application:
+    name: microservice-company-read #这个很重要，这在以后的服务与服务之间相互调用一般都是根据这个name
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: com.mysql.cj.jdbc.Driver           # mysql驱动包
+    #mysql8版本以上的驱动包，需要指定以下时区
+    url: jdbc:mysql://42.62.114.15:3306/creditsearchengine?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8  # 数据库名称
+    username: xtw1
+    password: AirtT0*6
+    dbcp2:
+      min-idle: 5                                # 数据库连接池的最小维持连接数
+      initial-size: 5                            # 初始化连接数
+      max-total: 5                               # 最大连接数
+      max-wait-millis: 150                       # 等待连接获取的最大超时时间
+
+eureka:
+  client:
+    registerWithEureka: true # 服务注册开关
+    fetchRegistry: true # 服务发现开关
+    serviceUrl: # 注册到哪一个Eureka Server服务注册中心，多个中间用逗号分隔
+      #defaultZone: http://localhost:6001/eureka
+      defaultZone: http://eureka6001.com:6001/eureka,http://eureka6002.com:6002/eureka
+  instance:
+    instanceId: ${spring.application.name}:${server.port} # 等价于microservice-product:8001
+    prefer-ip-address: true #访问路径就会显示成IP地址
+
+# 在被监控服务上添加暴露端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+
+
+logging:
+  level:
+    com.atgulipeng.risklocation.mapper : debug
+    org.springframework.data.mongodb.core: DEBUG
+    
+---
+server:
+  port: 8001
+
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
+  type-aliases-package: com.atgulipeng.microservice.entities  # 所有Entity别名类所在包
+  mapper-locations: classpath:mybatis/mapper/**/*.xml       # mapper映射文件
+
+spring:
+  profiles: prod # 生产环境
+  data:
+    mongodb:           # 整合 MongoDB
+      uri: mongodb://dbdev2:Inalex008@42.62.114.15:28010/commpl1?authSource=admin&authMechanism=SCRAM-SHA-1        # MongoDB连接
+#      database: commpl1                                                                                     # 库名
+  application:
+    name: microservice-company-read #这个很重要，这在以后的服务与服务之间相互调用一般都是根据这个name
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: com.mysql.cj.jdbc.Driver           # mysql驱动包
+    #mysql8版本以上的驱动包，需要指定以下时区
+    url: jdbc:mysql://42.62.114.15:3306/creditsearchengine?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8  # 数据库名称
+    username: xtw1
+    password: AirtT0*6
+    dbcp2:
+      min-idle: 5                                # 数据库连接池的最小维持连接数
+      initial-size: 5                            # 初始化连接数
+      max-total: 5                               # 最大连接数
+      max-wait-millis: 150                       # 等待连接获取的最大超时时间
+
+eureka:
+  client:
+    registerWithEureka: true # 服务注册开关
+    fetchRegistry: true # 服务发现开关
+    serviceUrl: # 注册到哪一个Eureka Server服务注册中心，多个中间用逗号分隔
+      #defaultZone: http://localhost:6001/eureka
+      defaultZone: http://eureka6001.com:6001/eureka,http://eureka6002.com:6002/eureka
+  instance:
+    instanceId: ${spring.application.name}:${server.port} # 等价于microservice-product:8001
+    prefer-ip-address: true #访问路径就会显示成IP地址
+
+# 在被监控服务上添加暴露端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+
+
+logging:
+  level:
+    com.atgulipeng.risklocation.mapper : debug
+    org.springframework.data.mongodb.core: DEBUG
