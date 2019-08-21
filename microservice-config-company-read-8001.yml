@@ -24,12 +24,10 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
     driver-class-name: com.mysql.cj.jdbc.Driver           # mysql驱动包
     #mysql8版本以上的驱动包，需要指定以下时区
-    #url: jdbc:mysql://42.62.114.15:3306/creditsearchengine?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8  # 数据库名称
-    #username: xtw1
-    #password: AirtT0*6
-    url: jdbc:mysql://localhost:3306/risk_location?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8  # 数据库名称
-    username: root
-    password: root
+    url: jdbc:mysql://42.62.114.15:3306/creditsearchengine?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8  # 数据库名称
+    username: xtw1
+    password: AirtT0*6
+    
     dbcp2:
       min-idle: 5                                # 数据库连接池的最小维持连接数
       initial-size: 5                            # 初始化连接数
