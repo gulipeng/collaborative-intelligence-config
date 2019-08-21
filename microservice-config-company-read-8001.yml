@@ -19,7 +19,7 @@ spring:
       uri: mongodb://dbdev2:Inalex008@42.62.114.15:28010/commpl1?authSource=admin&authMechanism=SCRAM-SHA-1        # MongoDB连接
 #      database: commpl1                                                                                     # 库名
   application:
-    name: microservice-company-read-config_bus-test #这个很重要，这在以后的服务与服务之间相互调用一般都是根据这个name
+    name: microservice-company-read-b  #这个很重要，这在以后的服务与服务之间相互调用一般都是根据这个name
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
     driver-class-name: com.mysql.cj.jdbc.Driver           # mysql驱动包
@@ -49,7 +49,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: hystrix.stream,bus-refresh
+        include: hystrix.stream
 
 
 logging:
