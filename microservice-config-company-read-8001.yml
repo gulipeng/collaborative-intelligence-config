@@ -54,7 +54,7 @@ management:
 
 logging:
   level:
-    com.atgulipeng.risklocation.mapper : debug
+    com.atgulipeng.microservice.mapper : debug
     org.springframework.data.mongodb.core: DEBUG
     
 ---
