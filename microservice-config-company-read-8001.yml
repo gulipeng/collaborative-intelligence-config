@@ -49,7 +49,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: hystrix.stream
+        include: hystrix.stream,bus-refresh
 
 
 logging:
