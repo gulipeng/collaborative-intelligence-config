@@ -65,12 +65,12 @@ zuul:
       stripPrefix: false
 
   host:
-    connect-timeout-millis: 8000
-    socket-timeout-millis: 8000
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
 
 ribbon:
-    ReadTimeout: 8000
-    ConnectTimeout: 8000
+    ReadTimeout: 20000
+    ConnectTimeout: 20000
     
 ---
 server:
@@ -135,9 +135,9 @@ zuul:
       stripPrefix: false
 
   host:
-    connect-timeout-millis: 8000
-    socket-timeout-millis: 8000
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
 
 ribbon:
-    ReadTimeout: 8000
-    ConnectTimeout: 8000
+    ReadTimeout: 20000
+    ConnectTimeout: 20000
